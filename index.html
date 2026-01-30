@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kongu Matrimony - Horoscope API Check</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">Kongu Matrimony Horoscope</h1>
+            <p class="subtitle">Astrology API Testing Interface</p>
+
+            <div class="language-selector">
+                <label for="language">Language:</label>
+                <select id="language" class="language-select">
+                    <option value="en">English</option>
+                    <option value="ta">தமிழ் (Tamil)</option>
+                </select>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="astro">
+                <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" />
+                </svg>
+                Astro Details
+            </button>
+            <button class="tab-btn" data-tab="matching">
+                <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+                Match Making
+            </button>
+        </div>
+
+        <!-- ASTRO DETAILS FORM -->
+        <div class="tab-content active" id="astro-tab">
+            <div class="form-card">
+                <h2 class="form-title">Astro Details</h2>
+                <p class="form-description">Get detailed astrological information based on birth details</p>
+
+                <form id="astro-form" class="form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="astro-day">Day</label>
+                            <input type="number" id="astro-day" name="day" min="1" max="31" required placeholder="27">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="astro-month">Month</label>
+                            <input type="number" id="astro-month" name="month" min="1" max="12" required
+                                placeholder="11">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="astro-year">Year</label>
+                            <input type="number" id="astro-year" name="year" min="1900" max="2100" required
+                                placeholder="2002">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="astro-hour">Hour (24h)</label>
+                            <input type="number" id="astro-hour" name="hour" min="0" max="23" required placeholder="2">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="astro-min">Minute</label>
+                            <input type="number" id="astro-min" name="min" min="0" max="59" required placeholder="30">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="astro-lat">Latitude</label>
+                            <input type="number" id="astro-lat" name="lat" step="0.0001" required placeholder="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="astro-lon">Longitude</label>
+                            <input type="number" id="astro-lon" name="lon" step="0.0001" required placeholder="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="astro-tzone">Timezone</label>
+                            <input type="number" id="astro-tzone" name="tzone" step="0.5" required placeholder="5.5">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Get Astro Details</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </form>
+
+                <div id="astro-loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Fetching astrological details...</p>
+                </div>
+
+                <div id="astro-result" class="result hidden"></div>
+            </div>
+        </div>
+
+        <!-- MATCHING ASTRO FORM -->
+        <div class="tab-content" id="matching-tab">
+            <div class="form-card">
+                <h2 class="form-title">Match Making (Dashakoot Points)</h2>
+                <p class="form-description">Calculate compatibility between two horoscopes</p>
+
+                <form id="matching-form" class="form">
+                    <div class="person-section">
+                        <h3 class="section-title">Male Details</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="m-day">Day</label>
+                                <input type="number" id="m-day" name="m_day" min="1" max="31" required placeholder="19">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="m-month">Month</label>
+                                <input type="number" id="m-month" name="m_month" min="1" max="12" required
+                                    placeholder="6">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="m-year">Year</label>
+                                <input type="number" id="m-year" name="m_year" min="1900" max="2100" required
+                                    placeholder="2002">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="m-hour">Hour (24h)</label>
+                                <input type="number" id="m-hour" name="m_hour" min="0" max="23" required
+                                    placeholder="6">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="m-min">Minute</label>
+                                <input type="number" id="m-min" name="m_min" min="0" max="59" required placeholder="30">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="m-lat">Latitude</label>
+                                <input type="number" id="m-lat" name="m_lat" step="0.0001" required placeholder="0">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="m-lon">Longitude</label>
+                                <input type="number" id="m-lon" name="m_lon" step="0.0001" required placeholder="0">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="m-tzone">Timezone</label>
+                                <input type="number" id="m-tzone" name="m_tzone" step="0.5" required placeholder="5.5">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="person-section">
+                        <h3 class="section-title">Female Details</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="f-day">Day</label>
+                                <input type="number" id="f-day" name="f_day" min="1" max="31" required placeholder="18">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="f-month">Month</label>
+                                <input type="number" id="f-month" name="f_month" min="1" max="12" required
+                                    placeholder="5">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="f-year">Year</label>
+                                <input type="number" id="f-year" name="f_year" min="1900" max="2100" required
+                                    placeholder="2002">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="f-hour">Hour (24h)</label>
+                                <input type="number" id="f-hour" name="f_hour" min="0" max="23" required
+                                    placeholder="5">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="f-min">Minute</label>
+                                <input type="number" id="f-min" name="f_min" min="0" max="59" required placeholder="42">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="f-lat">Latitude</label>
+                                <input type="number" id="f-lat" name="f_lat" step="0.0001" required placeholder="0">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="f-lon">Longitude</label>
+                                <input type="number" id="f-lon" name="f_lon" step="0.0001" required placeholder="0">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="f-tzone">Timezone</label>
+                                <input type="number" id="f-tzone" name="f_tzone" step="0.5" required placeholder="5.5">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Calculate Match</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </form>
+
+                <div id="matching-loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Calculating compatibility...</p>
+                </div>
+
+                <div id="matching-result" class="result hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
