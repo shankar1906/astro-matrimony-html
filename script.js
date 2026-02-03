@@ -285,6 +285,80 @@ function displayError(container, message) {
     container.classList.remove('hidden');
 }
 
+// Google Places Autocomplete Initialization
+function initAutocomplete() {
+    // Astro Details Location
+    const astroLocationInput = document.getElementById('astro-location');
+    const astroLatInput = document.getElementById('astro-lat');
+    const astroLonInput = document.getElementById('astro-lon');
+    
+    if (astroLocationInput) {
+        const astroAutocomplete = new google.maps.places.Autocomplete(astroLocationInput, {
+            types: ['(cities)'],
+            fields: ['geometry', 'name']
+        });
+        
+        astroAutocomplete.addListener('place_changed', () => {
+            const place = astroAutocomplete.getPlace();
+            if (place.geometry) {
+                astroLatInput.value = place.geometry.location.lat();
+                astroLonInput.value = place.geometry.location.lng();
+                console.log('Astro Location:', place.name, 'Lat:', astroLatInput.value, 'Lon:', astroLonInput.value);
+            }
+        });
+    }
+    
+    // Male Details Location
+    const maleLocationInput = document.getElementById('m-location');
+    const maleLatInput = document.getElementById('m-lat');
+    const maleLonInput = document.getElementById('m-lon');
+    
+    if (maleLocationInput) {
+        const maleAutocomplete = new google.maps.places.Autocomplete(maleLocationInput, {
+            types: ['(cities)'],
+            fields: ['geometry', 'name']
+        });
+        
+        maleAutocomplete.addListener('place_changed', () => {
+            const place = maleAutocomplete.getPlace();
+            if (place.geometry) {
+                maleLatInput.value = place.geometry.location.lat();
+                maleLonInput.value = place.geometry.location.lng();
+                console.log('Male Location:', place.name, 'Lat:', maleLatInput.value, 'Lon:', maleLonInput.value);
+            }
+        });
+    }
+    
+    // Female Details Location
+    const femaleLocationInput = document.getElementById('f-location');
+    const femaleLatInput = document.getElementById('f-lat');
+    const femaleLonInput = document.getElementById('f-lon');
+    
+    if (femaleLocationInput) {
+        const femaleAutocomplete = new google.maps.places.Autocomplete(femaleLocationInput, {
+            types: ['(cities)'],
+            fields: ['geometry', 'name']
+        });
+        
+        femaleAutocomplete.addListener('place_changed', () => {
+            const place = femaleAutocomplete.getPlace();
+            if (place.geometry) {
+                femaleLatInput.value = place.geometry.location.lat();
+                femaleLonInput.value = place.geometry.location.lng();
+                console.log('Female Location:', place.name, 'Lat:', femaleLatInput.value, 'Lon:', femaleLonInput.value);
+            }
+        });
+    }
+}
+
+// Initialize when Google Maps API is loaded
+window.initAutocomplete = initAutocomplete;
+
+// Call initAutocomplete when the page loads (if Google Maps is already loaded)
+if (typeof google !== 'undefined' && google.maps && google.maps.places) {
+    initAutocomplete();
+}
+
 // Initialize
 console.log('Kongu Matrimony Horoscope API Check - Ready');
 console.log('Current Language:', currentLanguage);

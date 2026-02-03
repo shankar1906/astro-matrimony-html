@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiYqs0WhDwD59tp8lfPWLHUstjRw_PXkU&libraries=places&callback=initAutocomplete"
+        async defer></script>
 </head>
 
 <body>
@@ -78,19 +81,17 @@
                             <input type="number" id="astro-min" name="min" min="0" max="59" required placeholder="30">
                         </div>
 
-                        <div class="form-group">
-                            <label for="astro-lat">Latitude</label>
-                            <input type="number" id="astro-lat" name="lat" step="0.0001" required placeholder="0">
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label for="astro-location">Birth Location</label>
+                            <input type="text" id="astro-location" name="location" required
+                                placeholder="Enter city or location">
+                            <input type="hidden" id="astro-lat" name="lat">
+                            <input type="hidden" id="astro-lon" name="lon">
                         </div>
 
                         <div class="form-group">
-                            <label for="astro-lon">Longitude</label>
-                            <input type="number" id="astro-lon" name="lon" step="0.0001" required placeholder="0">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="astro-tzone">Timezone</label>
-                            <input type="number" id="astro-tzone" name="tzone" step="0.5" required placeholder="5.5">
+                            <!-- <label for="astro-tzone">Timezone</label> -->
+                            <input type="number" id="astro-tzone" name="tzone" step="0.5" required value="5.5" hidden>
                         </div>
                     </div>
 
@@ -149,19 +150,17 @@
                                 <input type="number" id="m-min" name="m_min" min="0" max="59" required placeholder="30">
                             </div>
 
-                            <div class="form-group">
-                                <label for="m-lat">Latitude</label>
-                                <input type="number" id="m-lat" name="m_lat" step="0.0001" required placeholder="0">
+                            <div class="form-group" style="grid-column: 1 / -1;">
+                                <label for="m-location">Birth Location</label>
+                                <input type="text" id="m-location" name="m_location" required
+                                    placeholder="Enter city or location">
+                                <input type="hidden" id="m-lat" name="m_lat">
+                                <input type="hidden" id="m-lon" name="m_lon">
                             </div>
 
                             <div class="form-group">
-                                <label for="m-lon">Longitude</label>
-                                <input type="number" id="m-lon" name="m_lon" step="0.0001" required placeholder="0">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="m-tzone">Timezone</label>
-                                <input type="number" id="m-tzone" name="m_tzone" step="0.5" required placeholder="5.5">
+                                <!-- <label for="m-tzone">Timezone</label> -->
+                                <input type="number" id="m-tzone" name="m_tzone" step="0.5" required value="5.5" hidden>
                             </div>
                         </div>
                     </div>
@@ -199,19 +198,17 @@
                                 <input type="number" id="f-min" name="f_min" min="0" max="59" required placeholder="42">
                             </div>
 
-                            <div class="form-group">
-                                <label for="f-lat">Latitude</label>
-                                <input type="number" id="f-lat" name="f_lat" step="0.0001" required placeholder="0">
+                            <div class="form-group" style="grid-column: 1 / -1;">
+                                <label for="f-location">Birth Location</label>
+                                <input type="text" id="f-location" name="f_location" required
+                                    placeholder="Enter city or location">
+                                <input type="hidden" id="f-lat" name="f_lat">
+                                <input type="hidden" id="f-lon" name="f_lon">
                             </div>
 
                             <div class="form-group">
-                                <label for="f-lon">Longitude</label>
-                                <input type="number" id="f-lon" name="f_lon" step="0.0001" required placeholder="0">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="f-tzone">Timezone</label>
-                                <input type="number" id="f-tzone" name="f_tzone" step="0.5" required placeholder="5.5">
+                                <!-- <label for="f-tzone">Timezone</label> -->
+                                <input type="number" id="f-tzone" name="f_tzone" step="0.5" required value="5.5" hidden>
                             </div>
                         </div>
                     </div>
